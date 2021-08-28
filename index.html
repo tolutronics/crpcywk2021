@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRPC - ANTICIPATE</title>
+</head>
+<body >
+    <div id="body">
+        <img src="logo.jpeg" alt="" class="logo">
+        <h3>CRPC Youth Week 2021</h3>
+        <div id="outerFrame" >
+            
+            <label for="name" class="name">Enter Your Name</label>
+           <input type="text" id="username" name="name" placeholder="Your Name">
+
+           <form>
+                    <input type="file" id="picture" name="picture">
+           <label for="picture" class="picture">Upload Your Picture</label>
+           <input onclick="upload()" type="button" class="upload" value="Choose Picture"/>
+           <img id="img" height="150" style="display: none;">
+           </form>
+      
+            
+           <a id="link" onclick="generate()"><input  class="generate" id="generate" type="button" value="Generate Flyer"/>
+           
+        </a>
+         
+        </div>
+        
+        
+        <!-- <button onclick="downloadPNG()">Download as PNG</button> -->
+    </div>
+</body>
+<style>
+    body{
+        padding: 0;
+        margin: 0;
+    }
+    .logo{
+        height: 80px;
+    width: 80px;
+    position: absolute;
+    top: 30px;
+    left: 28px;
+    border-radius: 50%;
+    }
+    #body{
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        background-color: #2706a2;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        margin: 10px 0 30px 0;
+    }
+    h3{
+        color: #fff;
+    position: absolute;
+    top: 40px;
+    left: 110px;
+    }
+    label.name{
+        
+        margin-bottom: 10px;
+    }
+    label.picture{
+        
+        margin-bottom: 10px;
+    }
+    label{
+        width: 100%;
+        color: #fff;
+        padding-left: 20px;
+    }
+    #outerFrame{
+        flex-direction: column;
+        display: flex;
+       align-items: center;
+    }
+
+    input[type="file"]{
+
+    position: absolute;
+    bottom: 7px;
+    opacity: 0;
+
+    }
+
+    input[type="text"]{
+     padding: 10px 10px;
+     width: 300px;
+     outline: none;
+     border-radius: 10px;
+     text-align: center;
+     border: none;
+     margin-bottom: 10px;
+ }
+ input.upload{
+    padding: 10px 10px;
+    width: 325px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: #000;
+    background-color: #fff;
+}
+ input.generate{
+    padding: 10px 10px;
+    width: 300px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #ec0fe6;
+}
+
+input.generate:hover{
+    cursor: pointer;
+    background-color: #80097c;
+}
+
+
+
+
+   
+</style>
+
+<script src="alert.js"></script>
+
+<script> 
+
+    function generate(){
+        
+        var name = document.getElementById("username").value;
+       
+         localStorage.setItem("name",name)
+         const img =localStorage.getItem('image')
+
+        if(name=="" || name ==null || name==undefined || name ==" "){
+            Swal.fire({
+            title: 'Error!',
+            text: 'Please provide a valid name',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+           
+})
+
+        } else if(!img){
+            Swal.fire({
+            title: 'Error!',
+            text: 'Please Upload an Image',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+           
+})
+        }
+        else{
+                var a = document.getElementById('link'); //or grab it by tagname etc
+                 a.href = "dashboard.html"
+        
+           
+            
+        }
+        
+    }
+
+    function uploadImage() {
+  
+  if (this.files && this.files[0]) {
+    
+    var FR= new FileReader();
+    
+    FR.addEventListener("load", function(e) {
+        console.log(e.target.result)
+        localStorage.setItem("image",e.target.result)
+        document.getElementById("img").style.display='block'
+        document.getElementById("img").src = e.target.result;
+    }); 
+    
+    FR.readAsDataURL( this.files[0] );
+  }
+  
+}
+function upload(){
+    document.getElementById("picture").click()
+}
+
+document.getElementById("picture").addEventListener("change", uploadImage);
+
+  
+
+   
+</script>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRPC - ANTICIPATE</title>
+</head>
+<body >
+    <div class="loader" id="loader"></div>
+    <div id="body">
+        <img src="logo.jpeg" class="logo" alt="" srcset="">
+
+        <div id="outerFrame" >
+            
+            <img id="parentImg" src="anticipate.png" alt="" >
+            <div id="innerFrame">
+                <img id="childImg"  alt=""  >
+            </div>
+            <div id="nameInput">
+               
+            </div>
+            
+           
+        </div>
+        
+        <button onclick="downloadPNG()">Download as JPEG</button>
+        <!-- <button onclick="downloadPNG()">Download as PNG</button> -->
+    </div>
+</body>
+<style>
+    body{
+        padding: 0;
+        margin: 0;
+        background: #2706a2;
+    }
+    .logo{
+        height: 80px;
+    width: 80px;
+    position: absolute;
+    top: 30px;
+    left: 28px;
+   
+    border-radius: 50%;
+    }
+    #body{
+        display: none;
+        height: 100vh;
+        width: 100vw;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #2706a2;
+    }
+    #outerFrame{
+        width: 60%;
+        /* height: 50%; */
+        position: relative;
+        /* background: red; */
+        object-fit: contain;
+       
+    }
+    #innerFrame{
+        width: 42%;
+    height: 62%;
+    border-radius: 50%;
+    
+    /* background: yellow; */
+    position: absolute;
+    top: 24.5%;
+    right: 9.5%;
+}
+    
+
+    #parentImg{
+        width: 100%;
+        height: 100%;
+    }
+    #childImg{
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    #nameInput{
+        color: #fff;
+    text-align: center;
+    top: 47%;
+    position: absolute;
+    width: 43%;
+    /* background: red; */
+    font-weight: 600;
+    padding-left: 5px;
+    line-height: 1.3;
+    text-transform: capitalize;
+    height: 25%;
+    left: 0;
+    font-family: system-ui;
+    font-size: 20px;
+
+       
+    }
+    .loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 20px;
+    position: absolute;
+    top: 0;
+    display: block;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    height: 20px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+ 
+  
+    button{
+        margin-top: 30px;
+        padding: 10px;
+        border-radius: 8px;
+        outline: none;
+        border: none;
+    }
+    button:last-of-type{
+        margin-top: 10px;
+       
+    }
+    button:hover{
+        background: gold;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 992px) {
+        #outerFrame{
+            width: 100%;
+        }
+    }
+    @media screen and (max-width: 610px) {
+        
+        #nameInput{
+            font-size: 16px;
+        }
+        #date{
+            font-size: 16px;
+        }
+    }
+    @media screen and (max-width: 480px) {
+        #outerFrame{
+            width: 100%;
+            
+        }
+        #nameInput{
+            font-size: 14px;
+        }
+        #date{
+            font-size: 17px;
+        }
+    }
+
+    @media screen and (max-width: 330px) {
+        #outerFrame{
+            width: 100%;
+            
+        }
+        #nameInput{
+            font-size: 10px;
+        }
+        #date{
+            font-size: 12px;
+        }
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+<script> 
+
+setTimeout(() => {
+    document.getElementById("loader").style.display ="none"
+    document.getElementById("body").style.display ="flex"
+}, 2000);
+   
+    image = localStorage.getItem("image")
+    name = localStorage.getItem("name")
+    console.log(name)
+    console.log(image)
+    document.getElementById('childImg').src=image
+    document.getElementById('nameInput').innerHTML=`I am ${name}, <br> Ask me about CRPC -YWK2021`
+   
+
+
+    function downloadPNG(){
+        const scale = 2;
+        const elm = document.getElementById('outerFrame')
+        domtoimage.toPng(elm, {
+        height: elm.offsetHeight * scale,
+        style: {
+            transform: `scale(${scale}) translate(${elm.offsetWidth / 2 / scale}px, ${elm.offsetHeight / 2 / scale}px)`
+        },
+        width: elm.offsetWidth * scale
+}).then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = `${name}.jpeg`;
+        link.href = dataUrl;
+        link.click();
+    })
+    }
+
+  
+
+   
+</script>
+</html>
