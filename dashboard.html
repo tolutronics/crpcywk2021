@@ -12,8 +12,7 @@
         <img src="logo.jpeg" class="logo" alt="" srcset="">
 
         <div id="outerFrame" >
-            
-            <img id="parentImg" src="anticipate.png" alt="" >
+            <img id="parentImg" src="anticipate2.png" alt="" >
             <div id="innerFrame">
                 <img id="childImg"  alt=""  >
             </div>
@@ -62,14 +61,13 @@
        
     }
     #innerFrame{
-        width: 42%;
-    height: 62%;
+        width: 31%;
+    height: 32%;
     border-radius: 50%;
-    
     /* background: yellow; */
     position: absolute;
-    top: 24.5%;
-    right: 9.5%;
+    top: 36.5%;
+    right: 7.5%;
 }
     
 
@@ -84,20 +82,20 @@
         object-fit: cover;
     }
     #nameInput{
-        color: #fff;
-    text-align: center;
-    top: 47%;
+        color: rgb(43, 5, 131);
+    /* text-align: center; */
+    top: 38%;
     position: absolute;
     width: 43%;
     /* background: red; */
-    font-weight: 600;
-    padding-left: 5px;
+    font-weight: 800;
+    /* padding-left: 5px; */
     line-height: 1.3;
     text-transform: capitalize;
     height: 25%;
-    left: 0;
+    left: 39px;
     font-family: system-ui;
-    font-size: 20px;
+    font-size: 30px;
 
        
     }
@@ -154,7 +152,7 @@
     @media screen and (max-width: 610px) {
         
         #nameInput{
-            font-size: 16px;
+            font-size: 25px;
         }
         #date{
             font-size: 16px;
@@ -166,7 +164,7 @@
             
         }
         #nameInput{
-            font-size: 14px;
+            font-size: 22px;
         }
         #date{
             font-size: 17px;
@@ -179,7 +177,7 @@
             
         }
         #nameInput{
-            font-size: 10px;
+            font-size: 20px;
         }
         #date{
             font-size: 12px;
@@ -200,7 +198,7 @@ setTimeout(() => {
     console.log(name)
     console.log(image)
     document.getElementById('childImg').src=image
-    document.getElementById('nameInput').innerHTML=`I am ${name}, <br> Ask me about CRPC -YWK2021`
+    document.getElementById('nameInput').innerHTML=name
    
 
 
